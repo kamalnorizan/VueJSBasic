@@ -41,10 +41,18 @@
 
         <input type="text" disabled placeholder="Result" v-model="num3">
 
+
+        <input type="text" id="valueDirective" placeholder="Result"
+        v-model="name"
+        >
+
+        {{name}}
+
     </div>
     <script>
         const { createApp, ref, reactive } = Vue;
 
+        let name = ref("Zainal");
         createApp({
             setup() {
 
@@ -71,7 +79,8 @@
                     num1,
                     num2,
                     num3,
-                    calcValue
+                    calcValue, 
+                    name
                 }
             }
         }).mount('#app');
