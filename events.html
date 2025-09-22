@@ -30,7 +30,7 @@
         </table>
 
         <h3>Keyboard Events</h3>
-        <input type="text" @keyup.enter.ctrl="showAlert" placeholder="Key Up">&nbsp;
+        <input type="text" @keyup.enter="showAlertMsg" placeholder="Key Up" v-model="message">&nbsp;
 
         <h4>Input</h4>
         <input type="number" @input="calcValue" placeholder="Number 1" v-model.number="num1">
@@ -53,6 +53,7 @@
         const { createApp, ref, reactive } = Vue;
 
         let name = ref("Zainal");
+        let message = ref('');
         createApp({
             setup() {
 
@@ -72,6 +73,10 @@
                     num3.value = num1.value + num2.value;
                 }
 
+                function showAlertMsg(){
+                    alert(message.value);
+                }
+
 
                 return {
                     showAlert,
@@ -80,7 +85,9 @@
                     num2,
                     num3,
                     calcValue, 
-                    name
+                    name,
+                    showAlertMsg,
+                    message
                 }
             }
         }).mount('#app');
