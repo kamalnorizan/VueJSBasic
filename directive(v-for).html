@@ -13,28 +13,28 @@
         <h1>Employee List</h1>
         <div v-for="(pekerja, item) in employees">
             <h2>{{ item + 1 }}. {{ pekerja.name }} is {{ pekerja.age }} years old.</h2>
-    </div>
+        </div>
 
-    <script>
-        const { createApp, ref, reactive } = Vue;
-        
-        const employees = reactive([
-            { name: 'Kamal', age: 35 },
-            { name: 'Zainal', age: 50 },
-            { name: 'Ali', age: 25 },
-            { name: 'Abu', age: 30 }
-        ]);
+        <script>
+            const { createApp, ref, reactive } = Vue;
 
-        createApp({
-            setup() {
-            
-                return {
-                    employees
+            const employees = reactive([
+                { name: 'Kamal', age: 35, projects: ['Project A', 'Project C'] },
+                { name: 'Zainal', age: 50, projects: ['Project B', 'Project D'] },
+                { name: 'Ali', age: 25, projects: ['Project C', 'Project E', 'Project H'] },
+                { name: 'Abu', age: 30, projects: ['Project A', 'Project G'] }
+            ]);
+
+            createApp({
+                setup() {
+
+                    return {
+                        employees
+                    }
                 }
-            }
-        }).mount('#app');
+            }).mount('#app');
 
-    </script>
+        </script>
 </body>
 
 </html>
