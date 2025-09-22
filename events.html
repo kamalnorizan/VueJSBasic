@@ -30,7 +30,7 @@
         </table>
 
         <h3>Keyboard Events</h3>
-        <input type="text" @keyup.enter="showAlert" placeholder="Key Up">&nbsp;
+        <input type="text" @keyup.enter.ctrl="showAlert" placeholder="Key Up">&nbsp;
 
         <h4>Input</h4>
         <input type="number" @input="calcValue" placeholder="Number 1" v-model.number="num1">
