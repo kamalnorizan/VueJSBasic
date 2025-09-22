@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction of Vue JS</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Employee List</h1>
+        <div v-for="(pekerja, item) in employees">
+            <h2>{{ item + 1 }}. {{ pekerja.name }} is {{ pekerja.age }} years old.</h2>
+    </div>
+
+    <script>
+        const { createApp, ref, reactive } = Vue;
+        
+        const employees = reactive([
+            { name: 'Kamal', age: 35 },
+            { name: 'Zainal', age: 50 },
+            { name: 'Ali', age: 25 },
+            { name: 'Abu', age: 30 }
+        ]);
+
+        createApp({
+            setup() {
+            
+                return {
+                    employees
+                }
+            }
+        }).mount('#app');
+
+    </script>
+</body>
+
+</html>
