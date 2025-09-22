@@ -30,16 +30,16 @@
         </table>
 
         <h3>Keyboard Events</h3>
-        <input type="text" @keyup="showAlert" placeholder="Key Up">&nbsp;
+        <input type="text" @keyup.enter="showAlert" placeholder="Key Up">&nbsp;
 
         <h4>Input</h4>
-        <input type="text" @input="calcValue" placeholder="Number 1" :value="num1">
-        
-        &nbsp; + &nbsp; 
-        
-        <input type="text" @input="calcValue" placeholder="Number 2" :value="num2">&nbsp; = &nbsp; 
-        
-        <input type="text" disabled placeholder="Result" :value="num3">
+        <input type="number" @input="calcValue" placeholder="Number 1" v-model.number="num1">
+
+        &nbsp; + &nbsp;
+
+        <input type="number" @input="calcValue" placeholder="Number 2" v-model.number="num2">&nbsp; = &nbsp;
+
+        <input type="text" disabled placeholder="Result" v-model="num3">
 
     </div>
     <script>
@@ -58,15 +58,9 @@
 
                 const num1 = ref(0);
                 const num2 = ref(0);
-
                 const num3 = ref(0);
 
-                function calcValue(event) {
-                    if (event.target.placeholder === 'Number 1') {
-                        num1.value = Number(event.target.value);
-                    } else {
-                        num2.value = Number(event.target.value);
-                    }
+                function calcValue(event) {  
                     num3.value = num1.value + num2.value;
                 }
 
