@@ -10,7 +10,7 @@
 
 <body>
     <div id="app">
-        <h1 v-bind:class="[msgIsError ? 'redBg' : 'blueBg', textWhite ? 'textWhite' : '']">{{ message }}</h1>
+        <h1 :class="[msgIsError ? 'redBg' : 'blueBg', textWhite ? 'textWhite' : '']">{{ message }}</h1>
         <h1>{{ employee.name }} berumur {{employee.age}} tahun</h1>
 
         
@@ -20,7 +20,7 @@
 
         {{ updateMessage() }}
 
-        <a v-bind:href="url">Go To Google</a>
+        <a :href="url">Go To Google</a>
     </div>
 
     <script>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Vue Event</h1>
+        <h3>Mouse Events</h3>
+        <button v-on:click="showAlert">Show Alert</button>&nbsp;
+        <button v-on:dblclick="showAlert">Double Click</button>&nbsp;
+        <button v-on:mousedown="showAlert">Mouse Down</button>&nbsp;
+        <button v-on:mouseup="showAlert">Mouse Up</button>&nbsp;
+        <button v-on:mousemove.once="showAlert">Mouse Move</button>&nbsp;
+        <button v-on:mouseenter="showAlert">Mouse Enter</button>&nbsp;
+        <button v-on:mouseleave.once="showAlert">Mouse Leave</button>
+
+        <table width="50%" border="1" style="margin-top:20px">
+            <tr v-on:click="tableRow">
+                <td>1</td>
+                <td>Zainal</td>
+                <td>12</td>
+                <td><button v-on:click.stop="showAlert">Show Alert</button></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        const { createApp, ref, reactive } = Vue;
+
+        createApp({
+            setup() {
+
+                function showAlert() {
+                    alert('Button Clicked');
+                }
+                function tableRow() {
+                    alert('Table row Clicked');
+                }
+
+                return {
+                    showAlert,
+                    tableRow
+                }
+            }
+        }).mount('#app');
+
+    </script>
+</body>
+
+</html>
