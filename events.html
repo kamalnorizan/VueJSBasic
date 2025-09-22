@@ -12,22 +12,35 @@
     <div id="app">
         <h1>Vue Event</h1>
         <h3>Mouse Events</h3>
-        <button v-on:click="showAlert">Show Alert</button>&nbsp;
-        <button v-on:dblclick="showAlert">Double Click</button>&nbsp;
-        <button v-on:mousedown="showAlert">Mouse Down</button>&nbsp;
-        <button v-on:mouseup="showAlert">Mouse Up</button>&nbsp;
-        <button v-on:mousemove.once="showAlert">Mouse Move</button>&nbsp;
-        <button v-on:mouseenter="showAlert">Mouse Enter</button>&nbsp;
-        <button v-on:mouseleave.once="showAlert">Mouse Leave</button>
+        <button @click="showAlert">Show Alert</button>&nbsp;
+        <button @dblclick="showAlert">Double Click</button>&nbsp;
+        <button @mousedown="showAlert">Mouse Down</button>&nbsp;
+        <button @mouseup="showAlert">Mouse Up</button>&nbsp;
+        <button @mousemove.once="showAlert">Mouse Move</button>&nbsp;
+        <button @mouseenter="showAlert">Mouse Enter</button>&nbsp;
+        <button @mouseleave.once="showAlert">Mouse Leave</button>
 
         <table width="50%" border="1" style="margin-top:20px">
-            <tr v-on:click="tableRow">
+            <tr @click="tableRow">
                 <td>1</td>
                 <td>Zainal</td>
                 <td>12</td>
-                <td><button v-on:click.stop="showAlert">Show Alert</button></td>
+                <td><button @click.stop="showAlert">Show Alert</button></td>
             </tr>
         </table>
+
+        <h3>Keyboard Events</h3>
+        <input type="text" @keyup="showAlert" placeholder="Key Up">&nbsp;
+
+        <h4>Input</h4>
+        <input type="text" @input="calcValue" placeholder="Number 1" :value="num1">
+        
+        &nbsp; + &nbsp; 
+        
+        <input type="text" @input="calcValue" placeholder="Number 2" :value="num2">&nbsp; = &nbsp; 
+        
+        <input type="text" disabled placeholder="Result" :value="num3">
+
     </div>
     <script>
         const { createApp, ref, reactive } = Vue;
@@ -38,13 +51,33 @@
                 function showAlert() {
                     alert('Button Clicked');
                 }
+
                 function tableRow() {
                     alert('Table row Clicked');
                 }
 
+                const num1 = ref(0);
+                const num2 = ref(0);
+
+                const num3 = ref(0);
+
+                function calcValue(event) {
+                    if (event.target.placeholder === 'Number 1') {
+                        num1.value = Number(event.target.value);
+                    } else {
+                        num2.value = Number(event.target.value);
+                    }
+                    num3.value = num1.value + num2.value;
+                }
+
+
                 return {
                     showAlert,
-                    tableRow
+                    tableRow,
+                    num1,
+                    num2,
+                    num3,
+                    calcValue
                 }
             }
         }).mount('#app');
