@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction of Vue JS</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ getMessage() }}</h1>
+
+        <h2>{{ myNumber }}</h2>
+
+        <h2>{{ myArray }}</h2>
+
+        <h2>{{ myArray[1] }}</h2>
+        
+        <h2>{{ employee.name }} is {{employee.age}} years old. Main office is at {{employee.mainOffice}}</h2>
+
+        <h2>{{getRandomNumber()}}</h2>
+
+    </div>
+
+    <script>
+        const {createApp} = Vue;
+
+        createApp({
+            setup(){
+                const welcomeMsg = 'Hello VueJS';
+                const myNumber = 77;
+                const myArray = [5,10,15,20,25];
+
+                const employee = {
+                    name: 'Kamal',
+                    age: 35,
+                    mainOffice: 'Subang'
+                };
+
+                function getMessage(){
+                    return welcomeMsg.toUpperCase();
+                }
+
+                function getRandomNumber(){
+                    return Math.random();
+                }
+
+                return {
+                    welcomeMsg,
+                    myNumber,
+                    myArray,
+                    employee,
+                    getMessage,
+                    getRandomNumber
+                }
+            }
+        }).mount('#app');
+       
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction of Vue JS</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-bind:class="[msgIsError ? 'redBg' : 'blueBg', textWhite ? 'textWhite' : '']">{{ message }}</h1>
+        <h1>{{ employee.name }} berumur {{employee.age}} tahun</h1>
+
+        
+        <h2 v-if="myNumber < 30">My number is : {{myNumber}}</h2>
+        <h2 v-else-if="myNumber === 30">My number matches : {{myNumber}}</h2>
+        <h2 v-else>My higher number : {{myNumber}}</h2>
+
+        {{ updateMessage() }}
+
+        <a v-bind:href="url">Go To Google</a>
+    </div>
+
+    <script>
+        const { createApp, ref, reactive } = Vue;
+        let message = ref('Hello Vue 3');
+
+        const url = 'https://www.google.com';
+
+        
+        const employee = reactive({
+            name: 'Kamal',
+            age: 35,
+            mainOffice: 'Subang'
+        });
+
+        let myNumber = ref(20);
+
+        const msgIsError = ref(true);
+        const textWhite = ref(true);
+        createApp({
+            setup() {
+                function updateMessage() {
+                    setTimeout(() => {
+                        message.value = 'Hello VueJS (updated)';
+                        employee.name = 'Zainal';
+                        employee.age = 50;
+                        myNumber.value = myNumber.value + 10;
+                        msgIsError.value = false;
+                        textWhite.value = !textWhite.value;
+                    }, 3000);
+
+                }
+
+                return {
+                    message,
+                    updateMessage,
+                    employee,
+                    myNumber,
+                    url,
+                    msgIsError,
+                    textWhite
+                }
+            }
+        }).mount('#app');
+
+    </script>
+
+    <style>
+        .blueBg{
+            background-color: lightblue;
+        }
+
+        .redBg{
+            background-color: red;
+            
+        }
+
+        .yellowBg{
+            background-color: yellow;
+
+        }
+
+        .textWhite{
+            color: white;
+        }
+    </style>
+</body>
+
+</html>
