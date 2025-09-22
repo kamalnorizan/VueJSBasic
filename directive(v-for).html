@@ -11,10 +11,15 @@
 <body>
     <div id="app">
         <h1>Employee List</h1>
-        <div v-for="(pekerja, item) in employees">
-            <h2>{{ item + 1 }}. {{ pekerja.name }} is {{ pekerja.age }} years old.</h2>
+        <div v-for="(pekerja, item) in employees" :key="pekerja.name" >
+            <h2>{{ item + 1 }}. {{ pekerja.name }} is {{ pekerja.age }} years old.</h2> <input type="text">
+            <ol>
+                <li v-for="project in pekerja.projects">
+                    {{ project }}
+                </li>
+            </ol>
         </div>
-
+        <button v-on:click="shuffleEmployee()">Shuffle Employee</button>
         <script>
             const { createApp, ref, reactive } = Vue;
 
@@ -25,11 +30,16 @@
                 { name: 'Abu', age: 30, projects: ['Project A', 'Project G'] }
             ]);
 
+            function shuffleEmployee(){
+                employees.sort(() => Math.random() - 0.5);
+            }
+
             createApp({
                 setup() {
 
                     return {
-                        employees
+                        employees,
+                        shuffleEmployee
                     }
                 }
             }).mount('#app');
