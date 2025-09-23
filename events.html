@@ -43,7 +43,7 @@
 
 
         <input type="text" id="valueDirective" placeholder="Result"
-        v-model="name"
+        v-model.trim.lazy="name"
         >
 
         {{name}}
