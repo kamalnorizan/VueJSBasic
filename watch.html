@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Computed - Vue JS</title>
+    <title>Computed - Watch</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 
@@ -17,7 +17,7 @@
         <button @click="updateMessageValue">Change Value</button>
     </div>
     <script>
-        const { createApp, ref, computed } = Vue
+        const { createApp, ref, computed, watch } = Vue
 
 
         createApp({
@@ -29,9 +29,13 @@
                     return message.value.length;
                 })
 
-                function updateMessageValue(){
-                    message.value="Message Baru " + Math.floor(Math.random() * 100);
+                function updateMessageValue() {
+                    message.value = "Message Baru " + Math.floor(Math.random() * 100);
                 }
+
+                watch(message, (newValue, oldValue) => {
+                    console.log('Msg berubah. Value lama :' + oldValue + 'dan value baru adalah: ' + newValue)
+                });
 
                 return { message, getMessageLength, updateMessageValue }
             }
